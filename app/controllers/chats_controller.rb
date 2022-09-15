@@ -5,7 +5,7 @@ class ChatsController < ApplicationController
   def index
     @chats = Chat.all
 
-    render json: @chats
+    render json: @chats.as_json({index: true})
   end
 
   # GET /chats/1
@@ -18,7 +18,7 @@ class ChatsController < ApplicationController
     @chat = Chat.new(chat_params)
 
     if @chat.save
-      render json: @chat, status: :created, location: @chat
+      render json: @chat.as_json({create: true}), status: :created, location: @chat
     else
       render json: @chat.errors, status: :unprocessable_entity
     end
@@ -41,7 +41,7 @@ class ChatsController < ApplicationController
   def chats_by_username
     @chats = Chat.where(username: params[:username])
 
-    render json: @chats
+    render json: @chats.as_json({username: true})
   end
 
   private
