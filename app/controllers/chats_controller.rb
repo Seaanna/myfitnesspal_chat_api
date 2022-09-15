@@ -38,6 +38,12 @@ class ChatsController < ApplicationController
     @chat.destroy
   end
 
+  def chats_by_username
+    @chats = Chat.where(username: params[:username])
+
+    render json: @chats
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_chat
