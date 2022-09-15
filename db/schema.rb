@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_12_155613) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_15_023235) do
   create_table "chats", force: :cascade do |t|
     t.string "username"
     t.string "text"
@@ -18,6 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_12_155613) do
     t.boolean "is_read", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "expiration_date"
   end
 
 end

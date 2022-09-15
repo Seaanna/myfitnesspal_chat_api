@@ -1,8 +1,9 @@
 class Chat < ApplicationRecord
   validates :username, :text, presence: true
+  after_create :set_expiration_date
 
-  def expiration_date
-    created_at + timeout.seconds
+  def set_expiration_date
+    self.update(expiration_date: created_at + timeout.seconds)
   end
 
   def as_json(options = nil)
