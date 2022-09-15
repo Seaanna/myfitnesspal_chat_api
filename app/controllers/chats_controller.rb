@@ -39,7 +39,8 @@ class ChatsController < ApplicationController
   end
 
   def chats_by_username
-    @chats = Chat.where(username: params[:username])
+    @chats = Chat.where(username: params[:username], is_read: false)
+    @chats = @chats.filter { |chat| DateTime.now < chat.expiration_date }
 
     render json: @chats.as_json({username: true})
   end
