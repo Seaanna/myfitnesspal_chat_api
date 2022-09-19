@@ -13,14 +13,61 @@ Ruby 3.1.2
 
 Rails 7.0.3.1
 
-Heroku
+PostgreSQL 14.5
 
+Heroku
 
 #### Production Code
 https://myfitnesspalchatbot.herokuapp.com/
 ___
 ### Run code locally
-Install rvm
+Helpful video that goes over everything you need to install ROR:
+
+https://www.youtube.com/watch?v=rg9DCX33IDY
+
+#### Install Homebrew
+[brew.sh](https://brew.sh/)
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+#### Install rvm
+[rvm.io](https://rvm.io/)
+
+```
+\curl -sSL https://get.rvm.io | bash -s stable --rails
+```
+
+**Check to see ruby and rails are installed:**
+```
+ruby -v
+```
+###### ruby 3.1.2p20
+```
+rails -v
+```
+###### Rails 7.0.3.1
+
+#### Install Yarn
+[yarnpkg.com](https://yarnpkg.com/)
+
+You need nodejs installed for yarn:
+```
+brew install node
+```
+```
+brew install yarn
+```
+
+#### Install postgres
+```
+brew install postgresql
+```
+**Check to see postgres is installed:**
+```
+postgres --version
+```
+###### postgres (PostgreSQL) 14.5 (Homebrew)
 
 
 #### Clone the project
@@ -47,7 +94,7 @@ Install rvm
 ___
 ### Example cURL commands
 
-You will need to update the id and username in the given examples
+You will need to update the id and username in the given examples.
 If you are running this locally, please update url for the curl commands to be `http://localhost:3000/` instead of `http://myfitnesspalchatbot.herokuapp.com/`:
 
 ##### Create chat
