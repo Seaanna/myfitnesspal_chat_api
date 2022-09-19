@@ -7,16 +7,18 @@ class Chat < ApplicationRecord
   end
 
   def as_json(options = nil)
-    if options[:index]
+    if options[:index] || options[:show]
       {
         "username": username,
         "text": text,
         "expiration_date": expiration_date,
+        "is_read": is_read,
       }
     elsif options[:username]
       {
         "id": id,
         "text": text,
+        "is_read": is_read,
       }
     elsif options[:create]
       {
