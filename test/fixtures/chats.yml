@@ -3,11 +3,11 @@
 one:
   username: MyString
   text: MyString
-  timeout: 1
+  timeout: 60
   is_read: false
 
 two:
-  username: MyString
-  text: MyString
-  timeout: 1
+  username: MyString2
+  text: MyString2
+  timeout: 120
   is_read: false
