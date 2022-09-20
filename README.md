@@ -249,21 +249,57 @@ ___
 
 ## Follow Up Questions
 
-Given your implementation, summarize how your solution could scale to millions of daily users and 1000 requests/second split evenly between reads and writes. Consider the following:
+### Given your implementation, summarize how your solution could scale to millions of daily users and 1000 requests/second split evenly between reads and writes. Consider the following:
 
-* Data persistence / caching
-* Portability
-* Scalability
-* Testability
-* Framework implementation details
+**Data persistence/caching:**
 
-## Additional things to consider:
+All the data is saved in a Postgres database. Rails internally caches responses and database queries as needed. Additional caching can be configured in a Rails app, but you may want to hook up analytics to identify slow responses first.
 
-* What questions might you have for product owners that could clarify or inform the need to scale your service? 
-* What technologies would you pick? Why? 
-* What would you keep in your service? What might you change? 
-* How would you monitor your service? 
-* How would you secure and protect your service? 
-* What improvements would you recommend for future development of this service?
+Some links on caching APIs for Rails app
+https://medium.com/@lizdenhup/boosting-your-rails-api-performance-through-caching-f68724b92bd5
+
+https://engineering.wework.com/caching-external-apis-in-rails-for-a-ginormous-speed-boost-dd993f3a8cec
+
+**Portability:**
+
+The app is a typical Rails app and can be deployed using most services. I chose Heroku because it is specifically designed for Rails applications and is one of the easiest places to deploy. Heroku is basically a wrapper ontop of AWS that will hook up servers and DBs using their GUI interface.
+
+To run the app locally, a user needs to have Ruby 3.1.2 installed on their machine. From there, they can install Rails and the other dependencies. Instructions are in the readme.
+
+If more portability is needed, maybe a containerizing managament system like Docker or Kubernetes could be more helpful to easily deploy on different systems. Then you would be able to setup and deploy regardless of Windows, Mac, Linux, etc. You would still need to make sure your system is set up to use the containerizing system.
+
+
+**Scalability:**
+
+I used Heroku to deploy and scale horizontally. Each Heroku “dyno” is a server that can respond to requests. Each dyno can have multiple threads/workers. So a dyno with 3 workers can handle 3 requests concurrently.
+
+It is easy to scale horizontally by increasing the number of dynos/servers. However, your configuration needs to be set up so there are enough resources for all the pieces to do their part. This means things like enough DB connections for workers and background jobs or enough RAM/memory (Rails apps can be memory hogs).
+
+
+Heroku dynos can be configured to autoscale up and down as needed. This can be expensive so I would definitely ask if cost was going to be an issue or if there is a type of budget we would want to stick to.
+
+More info on Heroku horizontal scaling
+https://devcenter.heroku.com/articles/scaling
+
+
+**Testability:**
+
+There are a few model (unit) and controller tests set up for this service using Minitest. These tests make sure all the endpoints have the correct responses given the necessary params. The unit tests check things like the expiration_date logic and json serialization.
+
+Most Rails applications use rspec instead of Minitest so I could add rspec for better readability and familiarity. Other than the actual tests inside the application, testing this service is fairly easy from the Readme docs. If a person wants to see the system work, they can run the cURL commands using the Heroku URL.
+
+More info on Rails testing with Minitest
+https://guides.rubyonrails.org/testing.html
+
+
+**Framework implementation details:**
+
+Ruby on Rails
+PostgreSQL 14.5
+Heroku
+
+I used Ruby on Rails and postgres because it is what I know and have worked in the most. Heroku makes it really easy to deploy rails applications and I have mainly used that on Ruby on Rails projects.
+
+I educated myself on Python and Java enough to know they are good options for the API. I was looking for comparisons and similarities to how things are done in Rails/Ruby vs Java or Python. However, for a simple API challenge like this, I think Rails is a great option and allowed me to show off what I know rather than just Googling lots of new topics/syntax for Java/Python. I would be interested in talking with the team and learning their approach to the framework/scalibility requirements.
 
 
