@@ -19,7 +19,7 @@
 * Heroku
 
 #### Production Code
-https://myfitnesspalchatbot.herokuapp.com/
+https://myfitnesspal-chat-api.herokuapp.com/
 ___
 # API cURL commands
 
@@ -39,7 +39,7 @@ curl -v \
   -H "Accept: application/json" \
   -H "Content-type: application/json" \
   -d ' {"chat":{"username":"FooBar123", "text":"That guy got hit in the head with 2 coconuts."}}' \
-http://myfitnesspalchatbot.herokuapp.com/chats
+http://myfitnesspal-chat-api.herokuapp.com/chats
 ```
 ### Response
 ```
@@ -59,7 +59,7 @@ Useful for testing and checking saved records
 `GET /chats`
 
 ```
-curl -v http://myfitnesspalchatbot.herokuapp.com/chats
+curl -v http://myfitnesspal-chat-api.herokuapp.com/chats
 ```
 ### Response
 ```
@@ -83,7 +83,7 @@ Returns a specific chat by its `id`
 
 `GET /chats/:id`
 ```
-curl -v http://myfitnesspalchatbot.herokuapp.com/chats/1
+curl -v http://myfitnesspal-chat-api.herokuapp.com/chats/1
 ```
 ### Response
 ```
@@ -102,7 +102,7 @@ Returns a list of all unexpired and unread messages for a given `username`
 ### Request
 `GET /chats/user/:username`
 ```
-curl -v http://myfitnesspalchatbot.herokuapp.com/chats/user/FooBar123
+curl -v http://myfitnesspal-chat-api.herokuapp.com/chats/user/FooBar123
 ```
 ### Response
 ```
@@ -127,7 +127,7 @@ curl -v \
   -H "Content-type: application/json" \
   -X PUT \
   -d ' {"chat":{ "id":1, "is_read":true}}' \
-http://myfitnesspalchatbot.herokuapp.com/chats/1
+http://myfitnesspal-chat-api.herokuapp.com/chats/1
 ```
 ### Response
 ```
@@ -147,7 +147,7 @@ curl -v \
   -H "Accept: application/json" \
   -H "Content-type: application/json" \
   -X DELETE \
-http://myfitnesspalchatbot.herokuapp.com/chats/1
+http://myfitnesspal-chat-api.herokuapp.com/chats/1
 ```
 ### Response
 ```
