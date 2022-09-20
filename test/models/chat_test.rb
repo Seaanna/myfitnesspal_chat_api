@@ -46,7 +46,7 @@ class ChatTest < ActiveSupport::TestCase
     assert_equal json[:text], "testing is fun"
     assert json[:expiration_date]
     assert_equal json[:is_read], false
-    assert !json[:id]
+    assert json[:id]
   end
 
   test "json for username format" do
@@ -71,6 +71,15 @@ class ChatTest < ActiveSupport::TestCase
 
   test "json for create format" do
     json = @chat_filled.as_json({create: true})
+    assert json[:id]
+    assert !json[:username]
+    assert !json[:text]
+    assert !json[:expiration_date]
+    assert !json[:is_read]
+  end
+
+  test "json for update format" do
+    json = @chat_filled.as_json({update: true})
     assert json[:id]
     assert !json[:username]
     assert !json[:text]

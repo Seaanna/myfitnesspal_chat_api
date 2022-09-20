@@ -27,7 +27,7 @@ class ChatsController < ApplicationController
   # PATCH/PUT /chats/1
   def update
     if @chat.update(chat_params)
-      render json: @chat
+      render json: @chat.as_json({update: true})
     else
       render json: @chat.errors, status: :unprocessable_entity
     end
